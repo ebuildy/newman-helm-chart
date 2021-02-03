@@ -1,0 +1,14 @@
+{{- if .Values.egress_rules }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "newman.fullname" . }}
+  labels:
+    {{- include "newman.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "newman.selectorLabels" . | nindent 6 }}
+  egress:
+  {{ toYaml .Values.egress_rules | nindent 4 }}
+{{- end }}

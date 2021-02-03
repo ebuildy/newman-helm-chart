@@ -1,0 +1,11 @@
+{{- if .Values.collection }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "newman.fullname" . }}
+  labels:
+    {{- include "newman.labels" . | nindent 4 }}
+data:
+  collection.json: |
+    {{- .Values.collection | default "{}" | nindent 4 }}
+{{- end }}

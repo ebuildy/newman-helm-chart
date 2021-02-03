@@ -1,0 +1,42 @@
+# Default values for newman.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+collection: |
+  {
+    "info": {
+      "name": "Test stuff",
+      "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item" : [
+      {
+        "id" : "get-ip",
+        "name" : "Whats my ip",
+        "request" : {
+            "method" : "GET",
+            "url" : "https://api.ipify.org"
+        }
+      }
+    ]
+  }
+
+
+image:
+  repository: postman/newman
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 5-alpine
+
+job:
+  ttlSecondsAfterFinished: 60
+  restartPolicy: Never
+  annotations: {}
+
+egress_rules:
+- ports:
+  - protocol: TCP
+    port: 9200
+  to:
+  - podSelector:
+      matchLabels:
+        release: elasticsearch

@@ -1,0 +1,5 @@
+1. Wait for job pod
+  $ kubectl get pods --namespace={{ .Release.Namespace }} -l app.kubernetes.io/instance={{ .Release.Name }} -w
+
+2. See whats going on by running these commands:
+  $ kubectl --namespace {{ .Release.Namespace }} logs -f -l app.kubernetes.io/instance={{ .Release.Name }}

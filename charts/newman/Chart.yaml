@@ -1,0 +1,12 @@
+apiVersion: v2
+name: newman
+description: Execute postman/newman HTTP queries via a kubernetes job, deployed with Helm.
+home: https://github.com/ebuildy/newman-helm-chart
+sources:
+  - https://github.com/ebuildy/newman-helm-chart
+type: application
+version: 0.1.0
+appVersion: v0.1.0
+maintainers:
+  - name: ebuildy
+    email: ebuildy@gmail.com

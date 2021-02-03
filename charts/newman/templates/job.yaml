@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "newman.fullname" . }}
+  labels:
+    {{- include "newman.labels" . | nindent 4 }}
+spec:
+  ttlSecondsAfterFinished: {{ .Values.job.ttlSecondsAfterFinished }}
+  template:
+    metadata:
+      labels:
+        {{- include "newman.labels" . | nindent 8 }}
+      {{- with .Values.job.annotations }}
+      annotations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      restartPolicy: {{ .Values.job.restartPolicy }}
+      containers:
+      - name: postman
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        args: ["run", "/my_collection/collection.json"]
+        volumeMounts:
+        - name: data
+          mountPath: "/my_collection"
+          readOnly: true
+      volumes:
+      - name: data
+        configMap:
+          name: {{ include "newman.fullname" . }}
+          items:
+          - key: "collection.json"
+            path: "collection.json"

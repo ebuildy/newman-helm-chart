@@ -30,6 +30,7 @@ image:
   tag: 5-alpine
 
 job:
+  as_hook: true
   ttlSecondsAfterFinished: 60
   activeDeadlineSeconds:
   backoffLimit: 2

@@ -17,7 +17,7 @@ Kubernetes 1.14+
 ## Get Repo Info
 
 ```console
-helm repo add ebuildy https://ebuildy.github.io/newman-helm-charts
+helm repo add ebuildy https://ebuildy.github.io/newman-helm-chart
 helm repo update
 ```
 

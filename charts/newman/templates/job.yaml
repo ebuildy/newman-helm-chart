@@ -5,7 +5,13 @@ metadata:
   labels:
     {{- include "newman.labels" . | nindent 4 }}
 spec:
-  ttlSecondsAfterFinished: {{ .Values.job.ttlSecondsAfterFinished }}
+  {{- with .Values.job.ttlSecondsAfterFinished }}
+  ttlSecondsAfterFinished: {{ . }}
+  {{- end }}
+  backoffLimit: {{ .Values.job.backoffLimit }}
+  {{- with .Values.activeDeadlineSeconds }}
+  activeDeadlineSeconds: {{ . }}
+  {{- end }}
   template:
     metadata:
       labels:
@@ -17,7 +23,7 @@ spec:
     spec:
       restartPolicy: {{ .Values.job.restartPolicy }}
       containers:
-      - name: postman
+      - name: newman
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         args: ["run", "/my_collection/collection.json"]

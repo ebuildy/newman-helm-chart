@@ -20,6 +20,8 @@ collection: |
     ]
   }
 
+# additionals labels
+labels: {}
 
 image:
   repository: postman/newman
@@ -29,14 +31,16 @@ image:
 
 job:
   ttlSecondsAfterFinished: 60
+  activeDeadlineSeconds:
+  backoffLimit: 2
   restartPolicy: Never
   annotations: {}
 
-egress_rules:
-- ports:
-  - protocol: TCP
-    port: 9200
-  to:
-  - podSelector:
-      matchLabels:
-        release: elasticsearch
+egress_rules: []
+#- ports:
+#  - protocol: TCP
+#    port: 9200
+#  to:
+#  - podSelector:
+#      matchLabels:
+#        release: elasticsearch

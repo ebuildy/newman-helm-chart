@@ -1,0 +1,21 @@
+apiVersion: v1
+entries:
+  newman:
+  - apiVersion: v2
+    appVersion: v0.1.0
+    created: "2021-02-03T13:57:58.867723304Z"
+    description: Execute postman/newman HTTP queries via a kubernetes job, deployed
+      with Helm.
+    digest: b51b4f0246f9e35ece352234487c06cd7800936eb8a35735a50d5f0980a4add4
+    home: https://github.com/ebuildy/newman-helm-chart
+    maintainers:
+    - email: ebuildy@gmail.com
+      name: ebuildy
+    name: newman
+    sources:
+    - https://github.com/ebuildy/newman-helm-chart
+    type: application
+    urls:
+    - https://github.com/ebuildy/newman-helm-chart/releases/download/newman-0.1.1/newman-0.1.1.tgz
+    version: 0.1.1
+generated: "2021-02-03T13:57:58.518434166Z"
